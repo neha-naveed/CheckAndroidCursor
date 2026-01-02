@@ -15,6 +15,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    // TODO: Replace with your actual translation API base URL
+    // Examples:
+    // - Google Translate API: "https://translation.googleapis.com/language/translate/v2/"
+    // - LibreTranslate: "https://libretranslate.com/"
+    // - MyMemory Translation API: "https://api.mymemory.translated.net/"
     private const val BASE_URL = "https://api.translator.example.com/"
 
     @Provides

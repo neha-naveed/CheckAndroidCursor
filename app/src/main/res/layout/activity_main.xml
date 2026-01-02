@@ -4,47 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ui.feature_main.MainActivity">
 
+    <!-- Language Selection Row -->
+    <LinearLayout
+        android:id="@+id/languageSelectionLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Source Language Spinner -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sourceLanguageLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/source_language"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/sourceLanguageSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Swap Button -->
+        <ImageButton
+            android:id="@+id/swapLanguagesButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:src="@android:drawable/ic_menu_revert"
+            android:contentDescription="@string/swap_languages"
+            android:background="?attr/selectableItemBackgroundBorderless" />
+
+        <!-- Target Language Spinner -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/targetLanguageLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/target_language"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+            <AutoCompleteTextView
+                android:id="@+id/targetLanguageSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:focusable="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Source Text Input -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/sourceTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:hint="@string/source_text_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/languageSelectionLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/sourceTextEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/source_text_hint"
-            android:inputType="textMultiLine"
-            android:minLines="3" />
+            android:inputType="textMultiLine|textCapSentences"
+            android:minLines="4"
+            android:maxLines="10"
+            android:gravity="top|start" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <!-- Translate Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/translateButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:text="@string/translate"
+        android:textAllCaps="false"
+        app:icon="@android:drawable/ic_menu_edit"
+        app:iconGravity="textStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sourceTextInputLayout" />
 
+    <!-- Translated Text Output -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/translatedTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:hint="@string/translated_text_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/translateButton">
@@ -53,12 +114,16 @@
             android:id="@+id/translatedTextEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/translated_text_hint"
             android:inputType="textMultiLine"
-            android:minLines="3"
-            android:enabled="false" />
+            android:minLines="4"
+            android:maxLines="10"
+            android:gravity="top|start"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Progress Bar -->
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -68,6 +133,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Error Message -->
+    <TextView
+        android:id="@+id/errorTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/translatedTextInputLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

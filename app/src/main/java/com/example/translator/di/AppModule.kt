@@ -2,6 +2,7 @@ package com.example.translator.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.translator.data.local.LanguageProvider
 import com.example.translator.data.local.db.TranslatorDatabase
 import dagger.Module
 import dagger.Provides
@@ -25,5 +26,11 @@ object AppModule {
 
     @Provides
     fun provideTranslationHistoryDao(database: TranslatorDatabase) = database.translationHistoryDao()
+
+    @Provides
+    @Singleton
+    fun provideLanguageProvider(): LanguageProvider {
+        return LanguageProvider()
+    }
 }
 
