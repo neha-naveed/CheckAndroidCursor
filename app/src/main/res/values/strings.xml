@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Language Translator</string>
+    <string name="source_text_hint">Enter text to translate</string>
+    <string name="translated_text_hint">Translated text will appear here</string>
+    <string name="translate">Translate</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="clear_history">Clear History</string>
+    <string name="translation_history">Translation History</string>
+</resources>
+
